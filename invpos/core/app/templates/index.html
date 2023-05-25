@@ -1,0 +1,138 @@
+<!--
+ Copyright 2023 David Cordero Rosales
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+     http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<section class="content">
+    <div class="container-fluid">
+      <!-- Info boxes -->
+      <div class="row">
+        <div class="col-12 col-sm-6 col-md-3">
+          <div class="small-box bg-success">
+            <div class="inner">
+              <h3>{{client}}</h3>
+
+              <p>Clientes</p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <a href="{% url 'list_client' %}" class="small-box-footer">
+              Mas Info <i class="fas fa-arrow-circle-right"></i>
+            </a>
+          </div>
+        </div>
+        <div class="clearfix hidden-md-up"></div>
+
+        <div class="col-12 col-sm-6 col-md-3">
+          <div class="small-box bg-info">
+            <div class="inner">
+              <h3>{{sale}}</h3>
+
+              <p>Nuevas Ordenes</p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-shopping-cart"></i>
+            </div>
+            <a href="{% url 'list_sale' %}" class="small-box-footer">
+              Mas Info <i class="fas fa-arrow-circle-right"></i>
+            </a>
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-12 col-sm-6 col-md-3">
+          <div class="small-box bg-success">
+            <div class="inner">
+              <h3></h3>
+
+              <p>Usuarios</p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <a href="{#% url 'user_list' %#}" class="small-box-footer">
+              Mas Info <i class="fas fa-arrow-circle-right"></i>
+            </a>
+          </div>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+      <br><br>
+      <!-- Main row -->
+      <div class="row">
+        <!-- Left col -->
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-header border-transparent">
+              <h3 class="card-title">Productos sin existencias</h3>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="table m-0" id="data">
+                  <thead>
+                  <tr>
+                    <th>Codigo</th>
+                    <th>Nombre</th>
+                    <th>Precio de Costo</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    {% for p in prod %}
+                  <tr>
+                    <td>{{p.codigo}}</td>
+                    <td>{{p.name}}</td>
+                    <td>{{p.pcp}}</td>
+                  </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.table-responsive -->
+            </div>
+            <!-- /.card-body -->
+            <!-- /.card-footer -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div><!--/. container-fluid -->
+  </section>
+  {% block javascript %}
+  <script>
+    $('#data').DataTable({
+        responsive: true,
+        autoWidth: false,
+        destroy: true,
+        });
+  </script>
+  
+  {% endblock %}
+{% endblock %}
