@@ -41,7 +41,7 @@ function format(d) {
 $(function () {
 
     tblSale = $('#data').DataTable({
-        //responsive: true,
+        responsive: true,
         scrollX: true,
         autoWidth: false,
         destroy: true,
@@ -119,6 +119,7 @@ $(function () {
                 columns: [
                     {"data": "prod.name"},
                     {"data": "prod.cat.name"},
+                    {"data": "fpago"},
                     {"data": "price"},
                     {"data": "cant"},
                     {"data": "subtotal"},

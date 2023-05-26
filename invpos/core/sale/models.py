@@ -33,6 +33,7 @@ class Sale(models.Model):
 class DetSale(models.Model):
     sale = models.ForeignKey(Sale, on_delete=models.CASCADE)
     prod = models.ForeignKey(Product, on_delete=models.CASCADE)
+    fpago = models.CharField(default='Efectivo', max_length=100)
     price = models.DecimalField(default=0.00, max_digits=9, decimal_places=2)
     cant = models.IntegerField(default=0)
     subtotal = models.DecimalField(default=0.00, max_digits=9, decimal_places=2)
