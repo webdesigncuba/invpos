@@ -63,6 +63,7 @@ $(function () {
             },
             {"data": "cli.names"},
             {"data": "date_joined"},
+            {"data": "fpago"},
             {"data": "subtotal"},
             {"data": "desc"},
             {"data": "total"},
@@ -119,7 +120,6 @@ $(function () {
                 columns: [
                     {"data": "prod.name"},
                     {"data": "prod.cat.name"},
-                    {"data": "fpago"},
                     {"data": "price"},
                     {"data": "cant"},
                     {"data": "subtotal"},

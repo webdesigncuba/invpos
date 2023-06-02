@@ -3,6 +3,7 @@ from datetime import datetime
 from django.forms import model_to_dict
 from core.client.models import Client
 from core.product.models import Product
+from core.sale.choices import fp_choices
 
 class Sale(models.Model):
     cli = models.ForeignKey(Client, on_delete=models.CASCADE)
@@ -10,6 +11,7 @@ class Sale(models.Model):
     subtotal = models.DecimalField(default=0.00, max_digits=9, decimal_places=2)
     iva = models.DecimalField(default=0.00, max_digits=9, decimal_places=2)
     desc = models.DecimalField(default=0.00, max_digits=9, decimal_places=2)
+    fpago = models.CharField(default='e', choices=fp_choices, max_length=100)
     total = models.DecimalField(default=0.00, max_digits=9, decimal_places=2)
 
     def __str__(self):
@@ -21,6 +23,7 @@ class Sale(models.Model):
         item['subtotal'] = format(self.subtotal, '.2f')
         item['iva'] = format(self.iva, '.2f')
         item['desc'] = format(self.desc, '.2f')
+        item['fpago'] = self.fpago
         item['total'] = format(self.total, '.2f')
         item['date_joined'] = self.date_joined.strftime('%Y-%m-%d')
         item['det'] = [i.toJSON() for i in self.detsale_set.all()]
@@ -41,7 +44,6 @@ class Sale(models.Model):
 class DetSale(models.Model):
     sale = models.ForeignKey(Sale, on_delete=models.CASCADE)
     prod = models.ForeignKey(Product, on_delete=models.CASCADE)
-    fpago = models.CharField(default='Efectivo', max_length=100)
     price = models.DecimalField(default=0.00, max_digits=9, decimal_places=2)
     cant = models.IntegerField(default=0)
     subtotal = models.DecimalField(default=0.00, max_digits=9, decimal_places=2)

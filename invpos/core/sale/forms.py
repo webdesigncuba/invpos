@@ -44,6 +44,12 @@ class SaleForm(ModelForm):
             'desc': TextInput(attrs={
                 'class': 'form-control',
             }),
+            
+            'fpago': Select(attrs={
+                'class': 'form-control select2',
+                'style': 'width: 100%'
+            }),
+           
             'subtotal': TextInput(attrs={
                 'readonly': True,
                 'class': 'form-control',

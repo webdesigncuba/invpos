@@ -22,6 +22,7 @@ var vents = {
         iva: 0.00,
         desc: 0.00,
         total: 0.00,
+        fpago:'',
         products: []
     },
     get_ids: function(){
@@ -169,6 +170,11 @@ $(function () {
     $("input[name='desc']").on('change', function () {
         vents.calculate_invoice();
     })
+
+    $('select[name="fpago"]').select;
+
+   // $("input[name='fpago']")
+
     // search clients
 
     $('select[name="cli"]').select2({
@@ -386,6 +392,7 @@ $(function () {
 
         vents.items.date_joined = $('input[name="date_joined"]').val();
         vents.items.cli = $('select[name="cli"]').val();
+        vents.items.fpago = $('select[name="fpago"]').val();
         var parameters = new FormData();
         parameters.append('action', $('input[name="action"]').val());
         parameters.append('vents', JSON.stringify(vents.items));

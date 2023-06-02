@@ -103,6 +103,7 @@ class SaleCreateView(CreateView):
                     sale.cli_id = vents['cli']
                     sale.subtotal = float(vents['subtotal'])
                     sale.desc = float(vents['desc'])
+                    sale.fpago = vents['fpago']
                    # sale.iva = float(vents['iva'])
                     sale.total = float(vents['total'])
                     sale.save()
