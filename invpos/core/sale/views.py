@@ -18,6 +18,7 @@ from core.sale.forms import SaleForm
 from core.sale.models import Sale, DetSale
 from core.product.models import Product
 from core.client.models import Client
+from core.client.forms import ClientForm
 
 
 class SaleListView(ListView):
@@ -101,7 +102,8 @@ class SaleCreateView(CreateView):
                     sale.date_joined = vents['date_joined']
                     sale.cli_id = vents['cli']
                     sale.subtotal = float(vents['subtotal'])
-                    sale.iva = float(vents['iva'])
+                    sale.desc = float(vents['desc'])
+                   # sale.iva = float(vents['iva'])
                     sale.total = float(vents['total'])
                     sale.save()
                     for i in vents['products']:
@@ -250,3 +252,4 @@ class SaleInvoicePdfView(View):
         except:
             pass
         return HttpResponseRedirect(reverse_lazy('list_sale'))
+

@@ -64,13 +64,13 @@ $(function () {
             {"data": "cli.names"},
             {"data": "date_joined"},
             {"data": "subtotal"},
-            {"data": "iva"},
+            {"data": "desc"},
             {"data": "total"},
             {"data": "id"},
         ],
         columnDefs: [
             {
-                targets: [-2, -3, -4],
+                targets: [-2, -3],
                 class: 'text-center',
                 orderable: false,
                 render: function (data, type, row) {

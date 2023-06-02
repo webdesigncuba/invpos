@@ -10,6 +10,7 @@ class Product(models.Model):
     factura = models.CharField(max_length=15, verbose_name='Factura de Entrada del Producto', default='Ninguna')
     codigo = models.CharField(max_length=15, verbose_name='Codigo del Producto', unique=True)
     name = models.CharField(max_length=150, verbose_name='Nombre', unique=True)
+    prov = models.CharField(max_length=15, verbose_name='Proveedor del Producto', unique=True, default='Predeterminado')
     cat = models.ForeignKey(Category, on_delete=models.PROTECT, verbose_name='Categoría')
     image = models.ImageField(upload_to='product/%Y/%m/%d', null=True, blank=True, verbose_name='Imagen')
     pvp = models.DecimalField(default=0.00, max_digits=9, decimal_places=2, verbose_name='Precio de venta')

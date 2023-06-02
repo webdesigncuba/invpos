@@ -9,6 +9,7 @@ class Sale(models.Model):
     date_joined = models.DateField(default=datetime.now)
     subtotal = models.DecimalField(default=0.00, max_digits=9, decimal_places=2)
     iva = models.DecimalField(default=0.00, max_digits=9, decimal_places=2)
+    desc = models.DecimalField(default=0.00, max_digits=9, decimal_places=2)
     total = models.DecimalField(default=0.00, max_digits=9, decimal_places=2)
 
     def __str__(self):
@@ -19,10 +20,17 @@ class Sale(models.Model):
         item['cli'] = self.cli.toJSON()
         item['subtotal'] = format(self.subtotal, '.2f')
         item['iva'] = format(self.iva, '.2f')
+        item['desc'] = format(self.desc, '.2f')
         item['total'] = format(self.total, '.2f')
         item['date_joined'] = self.date_joined.strftime('%Y-%m-%d')
         item['det'] = [i.toJSON() for i in self.detsale_set.all()]
         return item
+    
+    def delete(self,using=None, keep_parents=False):
+        for det in self.detsale_set.all():
+            det.prod.stock += det.cant
+            det.prod.save()
+        super(Sale, self).delete()
 
     class Meta:
         verbose_name = 'Venta'

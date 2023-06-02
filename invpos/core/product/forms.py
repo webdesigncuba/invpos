@@ -29,6 +29,11 @@ class ProductForm(ModelForm):
                     'placeholder': 'Ingrese un nombre',
                 }
             ),
+            'provme': TextInput(
+                attrs={
+                    'placeholder': 'Ingrese un nombre de proveedor',
+                }
+            ),
             'cat': Select(
                 attrs={
                     'class': 'select2',

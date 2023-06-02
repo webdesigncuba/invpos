@@ -30,6 +30,7 @@ $(function () {
             {"data": "codigo"},
             {"data": "name"},
             {"data": "cat.name"},
+            {"data": "prov"},
             {"data": "image"},
             {"data": "pvp"},
             {"data": "stock"},

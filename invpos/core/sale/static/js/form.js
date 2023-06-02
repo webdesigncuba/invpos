@@ -20,6 +20,7 @@ var vents = {
         date_joined: '',
         subtotal: 0.00,
         iva: 0.00,
+        desc: 0.00,
         total: 0.00,
         products: []
     },
@@ -32,18 +33,20 @@ var vents = {
     },
     calculate_invoice: function () {
         var subtotal = 0.00;
-        var iva = $('input[name="iva"]').val();
+        //var iva = $('input[name="iva"]').val();
+        var desc = $('input[name="desc"]').val();
         $.each(this.items.products, function (pos, dict) {
             dict.pos = pos;
             dict.subtotal = dict.cant * parseFloat(dict.pvp);
             subtotal += dict.subtotal;
         });
         this.items.subtotal = subtotal;
-        this.items.iva = this.items.subtotal * iva;
-        this.items.total = this.items.subtotal + this.items.iva;
+       // this.items.iva = this.items.subtotal * iva;
+        this.items.desc = desc;
+        this.items.total = this.items.subtotal - this.items.desc;
 
         $('input[name="subtotal"]').val(this.items.subtotal.toFixed(2));
-        $('input[name="ivacalc"]').val(this.items.iva.toFixed(2));
+        //$('input[name="ivacalc"]').val(this.items.iva.toFixed(2));
         $('input[name="total"]').val(this.items.total.toFixed(2));
     },
     add: function (item) {
@@ -163,19 +166,9 @@ $(function () {
         //minDate: moment().format("YYYY-MM-DD")
     });
 
-    $("input[name='iva']").TouchSpin({
-        min: 0,
-        max: 100,
-        step: 0.01,
-        decimals: 2,
-        boostat: 5,
-        maxboostedstep: 10,
-        postfix: '%'
-    }).on('change', function () {
+    $("input[name='desc']").on('change', function () {
         vents.calculate_invoice();
     })
-        .val(0.12);
-
     // search clients
 
     $('select[name="cli"]').select2({

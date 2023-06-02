@@ -41,7 +41,7 @@ class SaleForm(ModelForm):
                     'data-toggle': 'datetimepicker'
                 }
             ),
-            'iva': TextInput(attrs={
+            'desc': TextInput(attrs={
                 'class': 'form-control',
             }),
             'subtotal': TextInput(attrs={
