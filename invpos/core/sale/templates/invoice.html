@@ -47,6 +47,9 @@
     <b>FECHA DE VENTA:</b> {{ sale.date_joined }}<br>
     <b>CLIENTE:</b> {{ sale.cli.names|upper }}<br>
     <b>DNI:</b> {{ sale.cli.dni }}<br>
+    {% for d in sale.detsale_set.all %}
+    <b>FORMA PAGO:</b> {{ d.fpago}}<br>
+    {% endfor %}
 </p>
 <table id="invoice">
     <thead>
